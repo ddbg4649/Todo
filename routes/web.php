@@ -10,11 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//一番最初に表示されるページ
+Route::get('/', 'HomeController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//
+Route::get('/home', 'HomeController@index')->name('home');
+
+//GoalのRESTfulなルーティングを実装
+Route::resource("goals", "GoalController");
+
+//ネストされたRESTfulなルーティングを実装
+Route::resource("goals.todos", "TodoController");
+
+//Todoを並び替える処理を行うルーティング
+Route::post('/goals/{goal}/todos/{todo}/sort', 'TodoController@sort');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
