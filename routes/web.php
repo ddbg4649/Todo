@@ -17,12 +17,12 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //GoalのRESTfulなルーティングを実装
-Route::resource("goals", "GoalController");
+Route::resource("goals", "GoalController")->middleware('auth');;
 
 //ネストされたRESTfulなルーティングを実装
-Route::resource("goals.todos", "TodoController");
+Route::resource("goals.todos", "TodoController")->middleware('auth');;
 
 //Todoを並び替える処理を行うルーティング
-Route::post('/goals/{goal}/todos/{todo}/sort', 'TodoController@sort');
+Route::post('/goals/{goal}/todos/{todo}/sort', 'TodoController@sort')->middleware('auth');;
 
 Auth::routes();
