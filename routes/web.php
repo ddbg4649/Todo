@@ -25,4 +25,8 @@ Route::resource("goals.todos", "TodoController")->middleware('auth');;
 //Todoを並び替える処理を行うルーティング
 Route::post('/goals/{goal}/todos/{todo}/sort', 'TodoController@sort')->middleware('auth');;
 
+//14章tag作成時に追加
+Route::resource("tags", "TagController")->middleware('auth');
+
 Auth::routes();
+
